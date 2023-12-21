@@ -19,7 +19,14 @@ return new class extends Migration
             $table->integer('Taille');
             $table->string('Emplacement');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('evenements_id');
+            $table->unsignedBigInteger('articles_id');
+            $table->unsignedBigInteger('activites_id');
+            $table->unsignedBigInteger('filiers_id');
+            $table->foreign('evenements_id')->references('id')->on('evenements')->onDelete('cascade');
+            $table->foreign('articles_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreign('activites_id')->references('id')->on('activites')->onDelete('cascade');
+            $table->foreign('filiers_id')->references('id')->on('filiers')->onDelete('cascade');
             $table->timestamps();
         });
     }

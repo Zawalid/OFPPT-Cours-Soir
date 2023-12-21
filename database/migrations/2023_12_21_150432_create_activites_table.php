@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('Date_Debut');
             $table->date('Date_Fin');
             $table->string('Lieu');
+            $table->text('Details');
             $table->string('Thumbnail');
             $table->unsignedBigInteger('Annee_Formation_id');
             $table->foreign('Annee_Formation_id')->references('id')->on('Annee_Formation')->onDelete('cascade');

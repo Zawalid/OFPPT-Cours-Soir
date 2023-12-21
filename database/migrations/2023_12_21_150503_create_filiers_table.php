@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nom');
             $table->text('Description');
+            $table->boolean('Active');
             $table->integer('Number_Stagiaires');
             $table->integer('Max_Stagiaires');
             $table->unsignedBigInteger('Annee_Formation_id');
