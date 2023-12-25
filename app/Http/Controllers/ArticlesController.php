@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -11,12 +12,24 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return view('AddArticle');
     }
-
     /**
      * Show the form for creating a new resource.
      */
+    public function add(Request $request)
+     {
+        $request->validate([
+            'Titre'=>'required',
+        ]);
+        $query = DB::table('articles')->insert([
+            'Titre'=>$request->input('Titre'),
+            'Details'=>$request->input('Details'),
+            'Autheur'=>$request->input('Autheur'),
+            'Date'=>$request->input('Date'),
+            'Categorie'=>$request->input('Categorie'),
+        ]);
+    }
     public function create()
     {
         //
