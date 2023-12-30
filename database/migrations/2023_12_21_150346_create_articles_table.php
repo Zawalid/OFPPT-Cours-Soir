@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('Titre');
-            $table->date('Date');
-            $table->string('Autheur');
-            $table->string('Categorie');
-            $table->text('Details');
-            $table->string('Thumbnail');
-            $table->unsignedBigInteger('Annee_Formation_id');
-            $table->foreign('Annee_Formation_id')->references('id')->on('Annee_Formation')->onDelete('cascade');
+            $table->string('titre');
+            $table->date('date');
+            $table->string('auteur');
+            $table->text('details');
+            $table->string('thumbnail');
+            $table->foreignId('categorie_id')->constrained()->onDelete('cascade');
+            $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

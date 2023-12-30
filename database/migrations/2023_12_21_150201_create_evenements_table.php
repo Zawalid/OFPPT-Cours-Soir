@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
-            $table->string('Titre');
-            $table->date('Date');
-            $table->string('Lieu');
-            $table->integer('Duree');
-            $table->text('Details');
-            $table->string('Thumbnail');
-            $table->string('Etat');
-            $table->unsignedBigInteger('Annee_Formation_id');
-            $table->foreign('Annee_Formation_id')->references('id')->on('Annee_Formation')->onDelete('cascade');
+            $table->string('titre');
+            $table->date('date');
+            $table->string('lieu');
+            $table->integer('duree');
+            $table->text('details');
+            $table->string('thumbnail');
+            $table->string('etat');
+            $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

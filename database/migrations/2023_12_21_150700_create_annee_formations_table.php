@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('annee_formations', function (Blueprint $table) {
             $table->id();
-            $table->string('Nom');
-            $table->date('Date_Debut');
-            $table->date('Date_Fin');
-            $table->boolean('Active');
-            $table->date('Date_Debut_Inscription');
-            $table->date('Date_Fin_Inscription');
-            $table->boolean('Etat_Inscription');
+            $table->string('nom');
+            $table->date('date_debut');
+            $table->date('date_fin');
+            $table->boolean('active');
+            $table->date('date_debut_inscription');
+            $table->date('date_fin_inscription');
+            $table->boolean('etat_inscription');
             $table->timestamps();
         });
     }

@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('filiers', function (Blueprint $table) {
             $table->id();
-            $table->string('Nom');
-            $table->text('Description');
-            $table->boolean('Active');
-            $table->integer('Number_Stagiaires');
-            $table->integer('Max_Stagiaires');
-            $table->unsignedBigInteger('Annee_Formation_id');
-            $table->foreign('Annee_Formation_id')->references('id')->on('Annee_Formation')->onDelete('cascade');
+            $table->string('titre');
+            $table->text('details');
+            $table->string('thumbnail');
+            $table->boolean('active');
+            $table->integer('number_stagiaires');
+            $table->integer('max_stagiaires');
+            $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
