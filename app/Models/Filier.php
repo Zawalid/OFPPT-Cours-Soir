@@ -10,4 +10,11 @@ class Filier extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    protected $fillable=["titre","details",'Active',"Max_Stagiaires",'image',];
+    public function pieceJointes() {
+ 	    return $this->morphMany(PieceJointe::class, 'PieceJointeable'); 
+	}
+     public function AnneeFormations(){
+    return $this->belongsTo(AnneeFormation::class,'annee_formation_id');
+  }
 }

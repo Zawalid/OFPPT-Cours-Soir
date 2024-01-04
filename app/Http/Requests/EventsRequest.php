@@ -24,12 +24,13 @@ class EventsRequest extends FormRequest
         return [
             "titre"=> "required",
             "description" => "required",
-            "file"=> "required",
+            "image"=> "required",
             "etat" => "required",
             "lieu"=> "required",
             "duree" => "required",
             "date_evenement" => "required",
-            "annee_formation" => "required"
+            "annee_formation" => "required",
+            "image" => "required"
         ];
     }
 }

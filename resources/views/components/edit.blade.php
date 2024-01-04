@@ -34,9 +34,9 @@
                         <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         <h6>Upload Files</h6>
                     </div>
-                    <input type="file" name="file" id="file" class="absolute w-full h-full top-0 opacity-0">    
+                    <input type="file" name="image" id="file" class="absolute w-full h-full top-0 opacity-0">    
                 </div>
-                @error('file')
+                @error('image')
                     <div class="text-red-600">{{$message}}</div>
                     @enderror
             </div>
@@ -44,24 +44,12 @@
 
         <div>
             {{$slot}}
-
-            
-            
-            <div class="mb-4">
-                <label for="annee_formation">Annee Formation</label>
-                <select name="annee_formation" id="annee_formation" class="block bg-gray-200 py-2 px-1 w-full rounded mt-4" value="{{$item->annee_formation_id}}">
-                    <option value="1">2024-2025</option>    
-                </select>    
-                @error('annee_formation')
-                <div class="text-red-600">{{$message}}</div>
-                @enderror
-            </div>
         </div>
 
         </div>   
          <div class="mt-6 flex w-3/12 gap-2">
             <button class="bg-[#499352] py-1 flex-1 text-white rounded font-medium">Save</button>
-            <button class="border-[1px] border-solid border-black py-1 flex-1 rounded">Cancel</button>
+            <a href="{{ route($toRoute.".index") }}"class="border-[1px] text-center border-solid border-black py-1 flex-1 rounded">Cancel</a>
          </div>
     </form>
 </div>

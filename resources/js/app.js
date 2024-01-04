@@ -18,3 +18,4 @@ deleteButtons.forEach((button) => {
 cancelDeleteButton.addEventListener("click", function () {
     this.closest(".confirmation").classList.add("hidden");
 });
+

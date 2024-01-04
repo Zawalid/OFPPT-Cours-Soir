@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FiliersController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\InsertAFandCtegories;
 use App\Http\Controllers\admin\TestController;
 
 /*
@@ -18,9 +19,7 @@ use App\Http\Controllers\admin\TestController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/addAF',[insertAFandCtegories::class,'insertAFandCtegories']);
 
 Route::get('admin', function () {
     return view('articles');

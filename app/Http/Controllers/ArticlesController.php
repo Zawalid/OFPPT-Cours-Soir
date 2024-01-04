@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\PieceJointe;
+use App\Models\Categorie;
+use App\Models\AnneeFormation;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\DB;
+
 
 class ArticlesController extends Controller
 {
@@ -13,61 +18,76 @@ class ArticlesController extends Controller
      */
     public function index()
     {
+        //
         // $publieeArticles = Article::all();
         $allPubliee = Article::all();
+        $anneeFormation = AnneeFormation::all();
+        $categorie = Categorie::all();
         $allTrashed = Article::onlyTrashed()->get();
         $publieeArticles = Article::paginate(5);
         $trashedArticles = Article::onlyTrashed()->paginate(5);
-        return view("articles.articles", compact(["publieeArticles","trashedArticles", 'allPubliee',"allTrashed"]));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+        return view("articles.articles", compact(["publieeArticles","trashedArticles", 'allPubliee',"allTrashed",'anneeFormation','categorie']));
+}
     public function create()
     {
-        return view('articles.ajouter_article');
+        $AnneeFormation = AnneeFormation::all();
+        $Categorie = Categorie::all();
+        return view('articles.ajouter_article',compact(["Categorie",'AnneeFormation']));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(ArticleRequest $request)
     {
+//store article in DB
+    // dd($request->all());
        $article = new Article();
        $article->titre = $request->titre;
        $article->details = $request->description;
        $article->date = $request->date_publication;
        $article->auteur = $request->auteur;
-       $article->thumbnail = $request->file;
        $article->categorie_id = $request->categorie;
        $article->annee_formation_id = $request->annee_formation;
+       $article->thumbnail = $request->image->getClientOriginalName();
        $article->save();
-       return redirect()->route('articles.index');
-    }
+//addArticlePrincipalImage
+        $article->pieceJointes()->create([
+            'nom'=>$request->titre,
+            'taille'=> 11,
+            'emplacement'=>public_path('images\articles'),
+            'URL'=>$request->image->getClientOriginalName(),
+        ]);
+        $request->image->move(public_path('images\articles'),$request->image->getClientOriginalName());
+//addAutresImages
+        if ($request->has('images') && count($request->images) > 0) {
+        foreach ($request->images as $image) {
+            $imageURL =$image->getClientOriginalName();
+            $article->pieceJointes()->create([
+                'nom'=>$request->titre,
+                'taille'=> 11,
+                'emplacement'=>public_path('images\articles'),
+                'URL'=>$imageURL,
+            ]);
+            $image->move(public_path('images/articles'),$imageURL);
+        }   
+        }
 
-    /**
-     * Display the specified resource.
-     */
+   
+       return to_route('articles.index');
+    }
     public function show(string $id)
     {
-        //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
+//GET ARTICLE TO MODIFIE
         $article = Article::findOrFail($id);
-        return view('articles.edit_article', compact('article'));
+        $pieceJointes=$article->pieceJointes;
+        $anneeFormation = AnneeFormation::all();
+        $Categorie = Categorie::all();
+        return view('articles.edit_article', compact( ['article','anneeFormation','Categorie','pieceJointes']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
+//MODIFIE ARTICLE
        $article = Article::findOrfail($id);
        $article->titre = $request->titre;
        $article->details = $request->description;
@@ -80,9 +100,6 @@ class ArticlesController extends Controller
        return redirect()->route('articles.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $article = Article::findOrFail($id);

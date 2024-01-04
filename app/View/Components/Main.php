@@ -18,7 +18,9 @@ class Main extends Component
     public $allPubliee;
     public $allTrashed;
     public $toRoute;
-    public function __construct($heading, $content, $publiee, $trashed, $toRoute, $allPubliee, $allTrashed)
+    public $anneeFormation;
+    public $categorie;
+    public function __construct($heading, $content, $publiee, $trashed, $toRoute, $allPubliee, $allTrashed,$categorie,$anneeFormation)
     {
         $this->heading = $heading;
         $this->content = $content;
@@ -27,6 +29,8 @@ class Main extends Component
         $this->toRoute = $toRoute;
         $this->allPubliee = $allPubliee;
         $this->allTrashed = $allTrashed;
+        $this->categorie = $categorie;
+        $this->anneeFormation = $anneeFormation;
     }
 
     /**

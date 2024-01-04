@@ -3,34 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evenement;
+use App\Models\PieceJointe;
+use App\Models\Categorie;
+use App\Models\AnneeFormation;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\EventsRequest;
 
+
 class EventsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $allPubliee = Evenement::all();
+        $anneeFormation = AnneeFormation::all();
+        $categorie = Categorie::all();
         $allTrashed = Evenement::onlyTrashed()->get();
         $publieeEvenements = Evenement::paginate(5);
         $trashedEvenements = Evenement::onlyTrashed()->paginate(5);
-        return view("evenements.evenements", compact(["publieeEvenements", "trashedEvenements", 'allPubliee', "allTrashed"]));
+        return view("evenements.evenements", compact(["publieeEvenements", "trashedEvenements", 'allPubliee', "allTrashed","anneeFormation",'categorie']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view("evenements.ajouter_evenement");
+        $AnneeFormation = AnneeFormation::all();
+        return view("evenements.ajouter_evenement",compact(['AnneeFormation']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(EventsRequest $request)
     {
         $evenement = new Evenement();
@@ -41,32 +40,46 @@ class EventsController extends Controller
         $evenement->duree = $request->duree;
         $evenement->etat = $request->etat;
         $evenement->annee_formation_id = $request->annee_formation;
-        $evenement->thumbnail = $request->file;
+        $evenement->thumbnail = $request->image->getClientOriginalName();
         $evenement->save();
-        return redirect()->route('evenements.index');
+        //addArticlePrincipalImage
+        $evenement->pieceJointes()->create([
+            'nom'=>$request->titre,
+            'taille'=> 11,
+            'emplacement'=>public_path('images\events'),
+            'URL'=>$request->image->getClientOriginalName(),
+        ]);
+        $request->image->move(public_path('images\events'),$request->image->getClientOriginalName());
+        // //addAutresImages
+        if ($request->has('images') && count($request->images) > 0) {
+        foreach ($request->images as $image) {
+            $imageURL =$image->getClientOriginalName();
+            $evenement->pieceJointes()->create([
+                'nom'=>$request->titre,
+                'taille'=> 11,
+                'emplacement'=>public_path('images\events'),
+                'URL'=>$imageURL,
+            ]);
+            $image->move(public_path('images/events'),$imageURL);
+        }   
+        }
+    return redirect()->route('evenements.index');
 
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $evenement = Evenement::findOrFail($id);
-        return view('evenements.edit_evenement', compact('evenement'));
+        $anneeFormation = AnneeFormation::all();
+        $pieceJointes=$evenement->pieceJointes;
+        return view('evenements.edit_evenement', compact('evenement','anneeFormation','pieceJointes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(EventsRequest $request, string $id)
     {
         $evenement = Evenement::findOrFail($id);
@@ -82,9 +95,6 @@ class EventsController extends Controller
         return redirect()->route('evenements.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $evenement = Evenement::findOrFail($id);

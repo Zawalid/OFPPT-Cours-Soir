@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('titre');
             $table->text('details');
             $table->string('thumbnail');
-            $table->boolean('active');
+            $table->boolean('active')->nullable();
             $table->integer('number_stagiaires');
             $table->integer('max_stagiaires');
             $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
