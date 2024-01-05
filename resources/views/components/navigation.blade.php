@@ -1,7 +1,10 @@
 <nav class="flex flex-col bg-gray-200 py-5 px-7 h-screen">
         <div class="w-[96px] mx-auto mb-14">
-            <img class="w-full" src="{{ asset('logo.png') }}" />
+            <img class="w-full" src="/images/logo.svg" />
         </div>
+        
+       
+        
         <div class="flex flex-col flex-grow justify-between">
             <ul>
                 <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-4">
@@ -14,6 +17,9 @@
                 </li>
                 <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-4">
                     <a href="{{ route('filiers.index') }}">Filiers</a>
+                </li>
+                <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-4">
+                    <a href="{{ route('settings.index') }}">parameter</a>
                 </li>
             </ul>
             <div class="flex gap-4 items-center">

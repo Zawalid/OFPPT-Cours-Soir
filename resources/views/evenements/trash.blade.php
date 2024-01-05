@@ -2,8 +2,6 @@
 
 @section('content')
 
-<x-navigation />
-
 <x-trash heading='Evenements' content='Evenement' :trashed="$trashedEvents" :publiee="$publieeEvents" :allPubliee="$allPubliee" :allTrashed="$allTrashed">
 
 <x-slot name="thead">
@@ -27,9 +25,12 @@
         <tr>
             <td class="py-2">{{$event->id}}</td>
             <td class="py-2">{{$event->titre}}</td>
-            <td class="py-2">{{$event->details}}</td>
-            <td class="py-2">{{$event->categorie_id}}</td>
-            <td class="py-2">{{$event->date}}</td>
+            <td class="py-2">{{$event->duree}}</td>
+            @if($event->etat ==='1')
+                <td class="py-2"><span class='bg-green-700 font-bold text-white p-1 rounded-md'>prochainement </span></td>
+                @else
+                <td class="py-2 "> <span class='bg-blue-800 text-white p-1 rounded-md'>deja passe </span></td>
+            @endif            <td class="py-2">{{$event->date}}</td>
             <td class="py-2 flex items-center justify-center">
                 <a href="{{ route('evenements.restore', $event->id)}}" class="mr-2">
                     <i class="fa-solid fa-rotate-left"></i>

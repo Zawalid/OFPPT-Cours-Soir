@@ -36,7 +36,6 @@
                 <div class="text-red-600">{{$message}}</div>
                 @enderror
     </div>
-
 </x-edit>
 
 @endsection

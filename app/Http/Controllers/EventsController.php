@@ -46,21 +46,21 @@ class EventsController extends Controller
         $evenement->pieceJointes()->create([
             'nom'=>$request->titre,
             'taille'=> 11,
-            'emplacement'=>public_path('images\events'),
+            'emplacement'=>public_path('images/evenement'),
             'URL'=>$request->image->getClientOriginalName(),
         ]);
-        $request->image->move(public_path('images\events'),$request->image->getClientOriginalName());
+        $request->image->move(public_path('images/evenement'),$request->image->getClientOriginalName());
         // //addAutresImages
-        if ($request->has('images') && count($request->images) > 0) {
+        if ($request->hasfile('images') && count($request->images) > 0) {
         foreach ($request->images as $image) {
             $imageURL =$image->getClientOriginalName();
             $evenement->pieceJointes()->create([
                 'nom'=>$request->titre,
                 'taille'=> 11,
-                'emplacement'=>public_path('images\events'),
+                'emplacement'=>public_path('images/evenement'),
                 'URL'=>$imageURL,
             ]);
-            $image->move(public_path('images/events'),$imageURL);
+            $image->move(public_path('images/evenement'),$imageURL);
         }   
         }
     return redirect()->route('evenements.index');
@@ -69,7 +69,11 @@ class EventsController extends Controller
 
     public function show(string $id)
     {
-        //
+        $evenement = Evenement::findOrFail($id);
+        $pieceJointes=$evenement->pieceJointes;
+        $anneeFormation=$evenement->AnneeFormations;
+        return view('evenements.show_evenement', compact( ['evenement','anneeFormation','pieceJointes']));
+
     }
 
     public function edit(string $id)
@@ -113,6 +117,9 @@ class EventsController extends Controller
     {
         $evenement = Evenement::onlyTrashed()->findOrFail($id);
         $evenement->forceDelete();
+          foreach ($evenement->pieceJointes as $pj) {
+            $pj->delete();
+        }
         return redirect()->route('evenements.trash');
     }
     public function restore(string $id)

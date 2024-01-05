@@ -2,7 +2,6 @@
 
 @section('content')
     
-<x-navigation />
 
 <x-main heading="Filiers" content="Filier" :publiee="$publieeFiliers" :trashed="$trashedFiliers" toRoute="filiers" :allPubliee="$allPubliee" :allTrashed='$allTrashed' :categorie="$categorie" :anneeFormation="$anneeFormation">
 

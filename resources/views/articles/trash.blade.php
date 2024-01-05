@@ -2,7 +2,6 @@
 
 @section('content')
 
-<x-navigation />
 
 <x-trash heading='Articles' content='Article' :trashed="$trashedArticles" :publiee="$publieeArticles" :allPubliee="$allPubliee" :allTrashed="$allTrashed">
 
@@ -26,7 +25,7 @@
                     <td class="py-2">{{$article->id}}</td>
                     <td class="py-2">{{$article->titre}}</td>
                     <td class="py-2">{{$article->auteur}}</td>
-                    <td class="py-2">{{$article->categorie_id}}</td>
+                    <td class="py-2">{{$article->Categories->nom}}</td>
                     <td class="py-2">{{$article->date}}</td>
                     <td class="py-2 flex items-center justify-center">
                         <a href="{{ route('articles.restore', $article->id)}}" class="mr-2">

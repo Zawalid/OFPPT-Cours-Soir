@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('duree');
             $table->text('details');
             $table->string('thumbnail');
-            $table->string('etat');
+            $table->string('etat')->nullable();
             $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

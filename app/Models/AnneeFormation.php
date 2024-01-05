@@ -17,4 +17,8 @@ class AnneeFormation extends Model
       public function filiers(){
     return $this->hasMany(Filier::class,'annee_formation_id');
   }
+   public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 }

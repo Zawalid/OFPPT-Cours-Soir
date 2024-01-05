@@ -21,12 +21,13 @@ class ArticlesController extends Controller
         //
         // $publieeArticles = Article::all();
         $allPubliee = Article::all();
+        $activeAnneeFormations = AnneeFormation::active()->get()[0];
         $anneeFormation = AnneeFormation::all();
         $categorie = Categorie::all();
         $allTrashed = Article::onlyTrashed()->get();
         $publieeArticles = Article::paginate(5);
         $trashedArticles = Article::onlyTrashed()->paginate(5);
-        return view("articles.articles", compact(["publieeArticles","trashedArticles", 'allPubliee',"allTrashed",'anneeFormation','categorie']));
+        return view("articles.articles", compact(["publieeArticles","trashedArticles", 'allPubliee',"allTrashed",'anneeFormation','categorie','activeAnneeFormations']));
 }
     public function create()
     {
@@ -51,10 +52,10 @@ class ArticlesController extends Controller
         $article->pieceJointes()->create([
             'nom'=>$request->titre,
             'taille'=> 11,
-            'emplacement'=>public_path('images\articles'),
+            'emplacement'=>public_path('images/article'),
             'URL'=>$request->image->getClientOriginalName(),
         ]);
-        $request->image->move(public_path('images\articles'),$request->image->getClientOriginalName());
+        $request->image->move(public_path('images/article'),$request->image->getClientOriginalName());
 //addAutresImages
         if ($request->has('images') && count($request->images) > 0) {
         foreach ($request->images as $image) {
@@ -62,18 +63,21 @@ class ArticlesController extends Controller
             $article->pieceJointes()->create([
                 'nom'=>$request->titre,
                 'taille'=> 11,
-                'emplacement'=>public_path('images\articles'),
+                'emplacement'=>public_path('images/article'),
                 'URL'=>$imageURL,
             ]);
-            $image->move(public_path('images/articles'),$imageURL);
+            $image->move(public_path('images/article'),$imageURL);
         }   
         }
-
-   
        return to_route('articles.index');
     }
     public function show(string $id)
     {
+        $article = Article::findOrFail($id);
+        $pieceJointes=$article->pieceJointes;
+        $anneeFormation=$article->AnneeFormations;
+        $Categorie=$article->Categories;
+        return view('articles.show_article', compact( ['article','anneeFormation','Categorie','pieceJointes']));
     }
     public function edit(string $id)
     {
@@ -93,7 +97,7 @@ class ArticlesController extends Controller
        $article->details = $request->description;
        $article->date = $request->date_publication;
        $article->auteur = $request->auteur;
-       $article->thumbnail = $request->file;
+       $article->thumbnail = $request->image;
        $article->categorie_id = $request->categorie;
        $article->annee_formation_id = $request->annee_formation;
        $article->save();
@@ -103,7 +107,7 @@ class ArticlesController extends Controller
     public function destroy(string $id)
     {
         $article = Article::findOrFail($id);
-        $article->delete();
+        $article->delete();    
         return redirect()->route('articles.index');
     }
     public function trash()
@@ -118,6 +122,9 @@ class ArticlesController extends Controller
     {
         $article = Article::onlyTrashed()->findOrFail($id);
         $article->forceDelete();
+        foreach ($article->pieceJointes as $pj) {
+            $pj->delete();
+        }
         return redirect()->route('articles.trash');
     }
     public function restore(string $id)

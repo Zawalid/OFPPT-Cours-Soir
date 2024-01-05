@@ -15,9 +15,12 @@ class Article extends Model
     public function pieceJointes() {
  	    return $this->morphMany(PieceJointe::class, 'PieceJointeable'); 
 	}
-    public function AnneeFormations(){
-    return $this->belongsTo(AnneeFormation::class,'annee_formation_id');
-  }
-
+  public function AnneeFormations(){
+  return $this->belongsTo(AnneeFormation::class,'annee_formation_id');
+}
+  public function Categories(){
+  return $this->belongsTo(Categorie::class,'categorie_id');
+}
+  
 
 }

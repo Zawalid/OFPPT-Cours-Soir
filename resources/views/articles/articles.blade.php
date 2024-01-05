@@ -2,7 +2,6 @@
 
 @section('content')
     
-<x-navigation />
 
 <x-main heading="Articles" content="Article" :publiee="$publieeArticles" :trashed="$trashedArticles" toRoute="articles" :allPubliee="$allPubliee" :allTrashed="$allTrashed" :categorie="$categorie" :anneeFormation="$anneeFormation"> 
 
@@ -59,6 +58,7 @@
     @endforeach
     @endisset
 </tbody>
+ 
 </x-slot>
 </x-main>
 

@@ -26,20 +26,22 @@
            <div class="text-red-600">{{$message}}</div>
            @enderror
             </div>
-
-            <div>    
+            <div>
                 <label for="file">Media</label>
-                <div class="relative border-2 border-dashed border-gray-500 py-20 mt-4">
-                    <div class="text-center">
-                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                        <h6>Upload Files</h6>
+                <div id='container_imgs' class=' flex flex-wrap flex-one'>    
+                    @foreach($item->pieceJointes as $pj)
+                            <div class="flex items-center p-2 border-2 border-gray-500 mt-4 ">
+                                <img  class='w-[100px] h-[100px]' src="{{ '/images/'.$content.'/'.$pj->URL }}" alt="">
+                                <input type="file" name="image" id="file" value="{{$pj->URL}}" class="">    
+                            </div>
+                            @error('image') <div class="text-red-600">{{$message}}</div> @enderror
+                         @endforeach
                     </div>
-                    <input type="file" name="image" id="file" class="absolute w-full h-full top-0 opacity-0">    
-                </div>
-                @error('image')
-                    <div class="text-red-600">{{$message}}</div>
-                    @enderror
             </div>
+
+           
+            <a type='button' id="btnAddImg" class=' bg-green-700 rounded-md p-1 w-full my-1 hover:bg-green-500 hover:font-bold text-center text-white cursor-pointer'>ajouter d'autre photo</a>
+
         </div>
 
         <div>

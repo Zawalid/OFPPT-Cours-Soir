@@ -3,6 +3,7 @@
 @vite('resources/js/app.js')
 
 <div class="grid grid-cols-[16%_1fr] gap-4">
+<x-navigation />
 
 @yield('content')
 

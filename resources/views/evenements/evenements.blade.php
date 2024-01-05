@@ -2,7 +2,6 @@
 
 @section('content')
     
-<x-navigation />
 
 <x-main heading="Evenements" content="Evenement" :publiee="$publieeEvenements" :trashed="$trashedEvenements" toRoute="evenements" :allPubliee="$allPubliee" :allTrashed='$allTrashed' :categorie="$categorie" :anneeFormation="$anneeFormation">
 
@@ -31,10 +30,10 @@
         <td class="py-2">{{$event->id}}</td>
         <td class="py-2">{{$event->titre}}</td>
         <td class="py-2">{{$event->duree}}</td>
-        @if($event->etat === 1)
-        <td class="py-2">upcoming</td>
+        @if($event->etat ==='1')
+        <td class="py-2"><span class='bg-green-700 font-bold text-white p-1 rounded-md'>prochainement </span></td>
         @else
-        <td class="py-2 "> <span class='bg-blue-800 text-white p-1 rounded-md'>alraedy passed </span></td>
+        <td class="py-2 "> <span class='bg-blue-800 text-white p-1 rounded-md'>deja passe </span></td>
         @endif
         <td class="py-2">{{$event->date}}</td>
         <td class="py-2">{{$event->AnneeFormations->nom}}</td>

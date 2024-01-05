@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FiliersController;
 use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\InsertAFandCtegories;
+use App\Http\Controllers\generalController;
 use App\Http\Controllers\admin\TestController;
 
 /*
@@ -19,7 +19,9 @@ use App\Http\Controllers\admin\TestController;
 |
 */
 
-Route::get('/addAF',[insertAFandCtegories::class,'insertAFandCtegories']);
+Route::get('/addAF',[generalController::class,'insertAFandCtegories']);
+Route::get('/admin/settings',[generalController::class,'getAf'])->name('settings.index');
+Route::POST('/admin/settings/setActiveAnneeFormation',[generalController::class,'setActiveAF'])->name('setActiveAnneeFormation');
 
 Route::get('admin', function () {
     return view('articles');

@@ -1,4 +1,4 @@
-<form class="confirmation overlay hidden" action="" method="POST">
+<form class="confirmation overlay hidden transition duration-300" action="" method="POST">
     @csrf
     @method('DELETE')
     <div class="z-[444] bg-white absolute text-black rounded top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] py-4 px-8">

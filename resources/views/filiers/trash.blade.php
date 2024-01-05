@@ -2,8 +2,6 @@
 
 @section('content')
 
-<x-navigation />
-
 <x-trash heading='Filiers' content='Filier' :trashed="$trashedFiliers" :publiee="$publieeFiliers" :allPubliee="$allPubliee" :allTrashed="$allTrashed">
 
 <x-slot name="thead">
@@ -28,8 +26,11 @@
             <td class="py-2">{{$filier->id}}</td>
             <td class="py-2">{{$filier->titre}}</td>
             <td class="py-2">{{$filier->number_stagiaires}}</td>
-            <td class="py-2">{{$filier->active}}</td>
-            <td class="py-2">{{$filier->created_at}}</td>
+            @if($filier->active === 1)
+                <td class="py-2"> <span class='p-1 bg-green-700 text-white rounded-md'>active </span></td>
+                @else
+                <td class="py-2"><span class='p-1 bg-red-500 text-white rounded-md'>  not active</span></td>
+            @endif            <td class="py-2">{{$filier->created_at}}</td>
             <td class="py-2 flex items-center justify-center">
                 <a href="{{ route('filiers.restore', $filier->id)}}" class="mr-2">
                     <i class="fa-solid fa-rotate-left"></i>

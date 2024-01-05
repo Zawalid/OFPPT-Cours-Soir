@@ -47,13 +47,6 @@
                 @error('annee_formation')
                     <div class="text-red-600">{{$message}}</div>
                 @enderror
-                <div class=' m-2'>
-                    <p>iamges</p>
-                    @foreach($pieceJointes as $pj)
-                        <p>1</p>
-                        <img  class='w-[100px] h-[100px]' src="{{ 'public\images\articles\\'.$pj->URL }}" alt="">
-                    @endforeach
-            </div>
         </div>
 </x-edit>
 
