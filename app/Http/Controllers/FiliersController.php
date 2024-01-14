@@ -99,7 +99,6 @@ public function update(FiliersRequest $request, string $id)
         $filier->max_stagiaires = $request->max_stagiaires;
         $filier->active = $request->active;
         $filier->annee_formation_id = $request->annee_formation;
-        $filier->number_stagiaires = 20;
 //modify old files
         if ($request->has('oldImages')){
             foreach($filier->pieceJointes as $pj) {
