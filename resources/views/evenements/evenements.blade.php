@@ -11,10 +11,10 @@
             <th class="py-2">#</th>
             <th class="py-2">Title</th>
             <th class="py-2">Duree</th>
-            <th class="py-2">Etat</th>
-            <th class="py-2">Date de Publication</th>
-            <th class="py-2">annee de formation</th>
-            <th class="py-2">Piece jointes</th>
+            <th class="py-2">Date P</th>
+            <th class="py-2">annee F</th>
+            <th class="py-2">Piece J</th>
+            <th class="py-2">Visibilite</th>
             <th class="py-2">Action</th>
         </tr>
     </thead>
@@ -30,15 +30,26 @@
         <td class="py-2">{{$event->id}}</td>
         <td class="py-2">{{$event->titre}}</td>
         <td class="py-2">{{$event->duree}}</td>
-        @if($event->etat ==='1')
-        <td class="py-2"><span class='bg-green-700 font-bold text-white p-1 rounded-md'>prochainement </span></td>
-        @else
-        <td class="py-2 "> <span class='bg-blue-800 text-white p-1 rounded-md'>deja passe </span></td>
-        @endif
         <td class="py-2">{{$event->date}}</td>
         <td class="py-2">{{$event->AnneeFormations->nom}}</td>
         <td class="py-2">{{count($event->pieceJointes)}}</td>
-
+        <td class="py-2 ">
+           <form action="{{ route('evenements.cacher', $event->id) }}" method="POST" class="mb-0">
+                @csrf
+                @method('POST')       
+                @if($event->visibility==='1')
+                    <button class=" bg-green-700 rounded-lg px-1 text-white font-bold ">
+                            <i class="fa-solid text-xl fa-check "></i>  
+                            <span>cacher </span>
+                    </button>
+                @else
+                    <button class="bg-red-600 rounded-lg p-1 text-white font-bold ">
+                            <i class="fa-solid fa-x "></i>  
+                            <span>afficher </span>
+                    </button>
+                @endif
+            </form>
+        </td>
         <td class="py-2 flex items-center justify-center">
             <a href="{{ route('evenements.show', $event->id)}}" class="mr-2">
                 <i class="fa-solid fa-eye"></i>

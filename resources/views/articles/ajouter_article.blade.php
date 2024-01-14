@@ -34,18 +34,7 @@
                 @enderror
             </div>
     
-            <div class="mb-4">
-                <label for="annee_formation">Annee Formation</label>
-                <select name="annee_formation" id="annee_formation" class="block bg-gray-200 cursor-pointer py-2 px-1 w-full rounded mt-4">  
-                    <option value='' >annee de formation</option>
-                    @foreach($AnneeFormation as $af)
-                        <option value= "{{$af->id}}" > {{$af->nom}}</option>
-                    @endforeach
-                </select>    
-                @error('annee_formation')
-                        <div class="text-red-600">{{$message}}</div>
-                @enderror
-            </div>
+          
             </div>  
         
     </x-ajouter>

@@ -24,7 +24,6 @@ class ArticleRequest extends FormRequest
         return [
             "titre" => ["required"],
             "description" => ["required"],
-            "image" => ["required"],
             "auteur" => ["required"],
             "categorie" => ["required"],
             "date_publication" => ["required"],

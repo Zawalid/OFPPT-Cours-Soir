@@ -10,11 +10,12 @@
         <tr>
             <th class="py-2">#</th>
             <th class="py-2">Title</th>
-            <th class="py-2">Numbre Stagiaires</th>
-            <th class="py-2">Etat</th>
-            <th class="py-2">Date de Publication</th>
-            <th class="py-2">Annee de Formation</th>
-            <th class="py-2">Piece jointes</th>
+            <th class="py-2">max Stg</th>
+            <th class="py-2">Inscreption</th>
+            <th class="py-2">Date P</th>
+            <th class="py-2">Annee F</th>
+            <th class="py-2">Piece J</th>
+            <th class="py-2">Visibility</th>
             <th class="py-2">Action</th>
         </tr>
     </thead>
@@ -28,7 +29,7 @@
     <tr>
         <td class="py-2">{{$filier->id}}</td>
         <td class="py-2">{{$filier->titre}}</td>
-        <td class="py-2">{{$filier->number_stagiaires}}</td>
+        <td class="py-2">{{$filier->max_stagiaires}}</td>
         @if($filier->active === 1)
         <td class="py-2"> <span class='p-1 bg-green-700 text-white rounded-md'>active </span></td>
         @else
@@ -37,6 +38,23 @@
         <td class="py-2">{{$filier->created_at}}</td>
         <td class="py-2">{{$filier->AnneeFormations->nom}}</td>
         <td class="py-2">{{count($filier->pieceJointes)}}</td>
+          <td class="py-2 ">
+           <form action="{{ route('filiers.cacher', $filier->id) }}" method="POST" class="mb-0">
+                @csrf
+                @method('POST')       
+                @if($filier->visibility==='1')
+                    <button class=" bg-green-700 rounded-lg px-1 text-white font-bold ">
+                            <i class="fa-solid text-xl fa-check "></i>  
+                            <span>cacher </span>
+                    </button>
+                @else
+                    <button class="bg-red-600 rounded-lg p-1 text-white font-bold ">
+                            <i class="fa-solid fa-x "></i>  
+                            <span>afficher </span>
+                    </button>
+                @endif
+            </form>
+        </td>
         <td class="py-2 flex items-center justify-center">
             <a href="{{ route('filiers.show', $filier->id)}}" class="mr-2">
                 <i class="fa-solid fa-eye"></i>

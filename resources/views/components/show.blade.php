@@ -6,10 +6,10 @@
     <h2 class="text-3xl my-10">{{$content. '#'. $item->id}}</h2>
 <div class='bg-gray-200 p-2 rounded-md''>
     <div class='flex w-full h-[30vh] my-5 rounded-md  justify-between'>
-        <img class='w-[60%] rounded-md shadow-md shadow-black' src="{{'/images/'.$content.'/'.$item->thumbnail}}" alt="">
+        <img class='w-[60%] rounded-md shadow-md shadow-black' src="{{asset('/images/'.$content.'/'.$item->thumbnail) }} " alt="">
         <div id='container_imgs '  class='w-[35%] overflow-x-hidden'>    
             @foreach($item->pieceJointes as $pj)
-            <img class='m-2 rounded-md shadow-md shadow-black'  src="{{ '/images/'.$content.'/'.$pj->URL }}" alt="">
+            <img class='m-2 rounded-md shadow-md shadow-black'  src="{{ asset('/images/'.$content.'/'.$pj->URL)  }}" alt="">
             @endforeach
         </div>
     </div>
@@ -23,10 +23,8 @@
                         <span class='font-bold'>Description</span>
                         <p for="titre">{{$item->details}}</p>       
                     </div> 
-
 </div>
 <div>
-           
                     {{$slot}}
                     <div class="mb-4">
                         <span class='font-bold'>annee de formation</span>

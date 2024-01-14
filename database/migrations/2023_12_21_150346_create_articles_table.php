@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('auteur');
             $table->text('details');
-            $table->string('thumbnail');
+            $table->string('visibility')->nullable();
             $table->foreignId('categorie_id')->constrained()->onDelete('cascade');
             $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
             $table->softDeletes();

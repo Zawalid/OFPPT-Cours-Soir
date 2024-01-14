@@ -16,7 +16,7 @@
             </select> 
                 <button class=' bg-blue-700 p-1 w-full rounded-md my-2 text-white'> valider </button>
         </form>
-    </div>
- 
 </div>
+</div>
+
 @endsection

@@ -25,12 +25,10 @@ class EventsRequest extends FormRequest
             "titre"=> "required",
             "description" => "required",
             "image"=> "required",
-            "etat" => "required",
             "lieu"=> "required",
             "duree" => "required",
             "date_evenement" => "required",
             "annee_formation" => "required",
-            "image" => "required"
         ];
     }
 }
