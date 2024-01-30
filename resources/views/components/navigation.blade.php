@@ -10,7 +10,10 @@
                 </p>
             </div>
         <div class="flex flex-col flex-grow">
-            <ul>
+            <ul>   
+                  <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-1">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
                 <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-1">
                     <a href="{{ route('articles.index') }}">
                         Articles
@@ -22,9 +25,34 @@
                 <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-1">
                     <a href="{{ route('filiers.index') }}">Filiers</a>
                 </li>
-                <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-1">
-                    <a href="{{ route('home') }}">Paramètres </a>
-                </li>
+           
+          
+                @role(['super-admin','admin'])
+                    <button class="peer relative text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-md text-lg p-2 text-center inline-flex items-center " >
+                     Admin
+                        <svg class="w-2.5 h-2.5 mx-2 absolute right-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                        </svg>
+                    </button>
+                    <div  class="z-10 invisible bg-white divide-y font-bold divide-gray-100 rounded-lg shadow  dark:bg-gray-300 text-black hover:visible peer-hover:visible">
+                        <ul class=" pt-2 text-sm ">
+                            @can('gerer users')
+                                <a href="{{ route('users.index') }}" >
+                                    <li class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-400 ">users </li>
+                                </a>
+                            @endcan             
+                            @can('gerer roles')
+                                <a href="{{ route('permissions.index') }}" >
+                                    <li class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-400 ">permissions</li>
+                                </a>
+
+                                <a href="{{ route('roles.index') }}" >
+                                    <li class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-400 ">  roles</li>
+                                </a>
+                            @endcan
+                        </ul>
+                    </div>
+                @endrole
             </ul>
         </div>
         <div class="flex flex-col w-full">

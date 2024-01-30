@@ -6,7 +6,7 @@
     <div>
         <div class="mb-4">
             <span class='font-bold'>auteur</span>
-            <p for="titre">{{$article->auteur}}</p>       
+            <p for="titre">{{$article->Admin->name}}</p>       
         </div> 
         <div class="mb-4">
             <span class='font-bold'>categorie</span>

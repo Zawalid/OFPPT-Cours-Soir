@@ -14,7 +14,13 @@ class Evenement extends Model
        public function pieceJointes() {
  	    return $this->morphMany(PieceJointe::class, 'PieceJointeable'); 
 	}
+      public function tags() {
+ 	    return $this->morphMany(Tag::class, 'taggable'); 
+	}
     public function AnneeFormations(){
     return $this->belongsTo(AnneeFormation::class,'annee_formation_id');
+  }
+    public function Admin(){
+    return $this->belongsTo(User::class,'user_id');
   }
 }

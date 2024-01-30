@@ -13,17 +13,21 @@
         <div>
             <div class="mb-4">
                 <label for="titre">Titre</label>
-                <input type="text" name="titre" id="titre" class="block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none">
+                <input type="text" name="titre" value="{{old('titre')}}" id="titre" class="block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none">
            @error('titre')
            <div class="text-red-600">{{$message}}</div>
            @enderror
         </div>          
             <div class="mb-4">
                 <label for="description">Description</label>
-                <textarea rows="8" name="description" id="description" class="block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none"></textarea>
+                <textarea rows="8" name="description" id="description" class="block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none">{{old('description')}}</textarea>
             @error('description')
            <div class="text-red-600">{{$message}}</div>
            @enderror
+            </div>
+            <div >
+                 <label for="tags">Tgas #</label>
+                 <input type="text" name="tags" id="tags" class='block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none'>
             </div>
             <label for="file">piece joint</label>  
             <div class='flex flex-wrap gap-1 ' id='container_imgs' >  
@@ -32,7 +36,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-white stroke-black" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <input id='upload' type="file" name='image' class="hidden w-full h-full upload" />
+                            <input id='upload' type="file" name='images[]' class="hidden w-full h-full upload" />
                         <span class="text-gray-600 font-medium">Upload file</span>
                     </label>
                         @error('image')<div class="text-red-600">{{$message}}</div> @enderror
@@ -53,7 +57,6 @@
         </div>
         {{$slot}}
         </div>   
-        <input type='hidden' name="annee_formation" id="annee_formation" class="block bg-gray-200 cursor-pointer py-2 px-1 w-full rounded mt-4" value="{{Session::get('anneeFormationActive')->id}}" />  
          <div class="mt-6 flex w-3/12 gap-2">
             <button class="bg-[#499352] py-1 flex-1 text-white rounded font-medium">Save</button>
             <a href="{{ route($toRoute.".index") }}" class="border-[1px] text-center border-solid border-black py-1 flex-1 rounded">Cancel</a>

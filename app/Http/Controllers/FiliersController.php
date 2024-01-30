@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\Filier;
 use App\Models\AnneeFormation;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Requests\FiliersRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class FiliersController extends Controller
-{
 
+class FiliersController extends Controller{
 public function index()
     {
         $allPubliee = Filier::all();
@@ -24,31 +23,27 @@ public function index()
         return view("filiers.filiers", compact(["publieeFiliers","trashedFiliers", 'allPubliee', 'allTrashed','anneeFormation','categorie']));
     }
 
-public function create()
-    {
+public function create(){
+     $activeAnneeFormations = AnneeFormation::active()->get()[0];
+        if  (session::missing('anneeFormationActive')) {
+        session(['anneeFormationActive' => $activeAnneeFormations]);
+        }
         $AnneeFormation = AnneeFormation::all();
         return view("filiers.ajouter_filier",compact(['AnneeFormation']));
     }
 
 public function store(FiliersRequest $request){
-        //dd($request->all());
+//store filier in DB
         $filier = new Filier();
         $filier->titre = $request->titre;
         $filier->details = $request->description;
         $filier->max_stagiaires = $request->max_stagiaires;
         $filier->active = $request->Active;
         $filier->visibility =true;
-        $filier->annee_formation_id = $request->annee_formation;
-        $filier->save();
-        
-        $filier->pieceJointes()->create([
-            'nom'=>$request->titre,
-            'taille'=> 11,
-            'emplacement'=>public_path('images/filier'),
-            'URL'=>$request->image->getClientOriginalName(),
-        ]);
-        $request->image->move(public_path('images/filier'),$request->image->getClientOriginalName());
-        // //addAutresImages
+        $filier->user_id = auth()->user()->id;
+        $filier->annee_formation_id = Session::get('anneeFormationActive')->id;
+        $filier->save();     
+//STORE filier files
         if ($request->has('images') && count($request->images) > 0) {
         foreach ($request->images as $image) {
             $imageURL =$image->getClientOriginalName();
@@ -61,7 +56,14 @@ public function store(FiliersRequest $request){
             $image->move(public_path('images/filier'),$imageURL);
         }   
         }
-        
+//store tags 
+        if ($request->has('tags') ) {
+            foreach (explode(' ', $request->tags ) as $tag) {
+                $filier->tags()->create([
+                    'name'=>$tag,
+                ]);
+            }   
+        } 
         return to_route("filiers.index");
     }
 public function show(string $id)
@@ -91,8 +93,7 @@ public function cacher(Request $request ,string $id){
     return to_route('filiers.index');
     }
 
-public function update(FiliersRequest $request, string $id)
-    {
+public function update(FiliersRequest $request, string $id) {
         $filier = Filier::findOrfail($id);
         $filier->titre = $request->titre;
         $filier->details = $request->description;
@@ -129,14 +130,14 @@ public function update(FiliersRequest $request, string $id)
         }
         return redirect()->route("filiers.index");
     }
-public function destroy(string $id)
-    {
+public function destroy(string $id)  {
+//move filier to trash
         $filier = Filier::findOrFail($id);
         $filier->delete();
         return redirect()->route("filiers.index");
     }
-public function trash()
-    {
+public function trash() {
+//index of trashed filier
         $allPubliee = Filier::all();
         $allTrashed = Filier::onlyTrashed()->get();
         $user = Auth::user();
@@ -145,8 +146,8 @@ public function trash()
         $trashedFiliers = Filier::onlyTrashed()->paginate(5);
         return view('filiers.trash', compact(['publieeFiliers','trashedFiliers','user','activeAnneeFormations', 'allPubliee', 'allTrashed']));
     }
-public function forceDelete(string $id)
-    {
+public function forceDelete(string $id) {
+//forcee delete from trash
         $filier = Filier::onlyTrashed()->findOrFail($id);
         $filier->forceDelete();
             foreach ($filier->pieceJointes as $pj) {
@@ -154,9 +155,9 @@ public function forceDelete(string $id)
         }
         return redirect()->route('filiers.trash');
     }
-public function restore(string $id)
-    {
-        $filier = Filier::onlyTrashed()->findOrFail($id);
+public function restore(string $id) {
+//restore from trash
+    $filier = Filier::onlyTrashed()->findOrFail($id);
         $filier->restore();
         return redirect()->route('filiers.index');
     }

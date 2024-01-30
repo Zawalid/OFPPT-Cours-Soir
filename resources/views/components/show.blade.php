@@ -6,11 +6,14 @@
     <h2 class="text-3xl my-10">{{$content. '#'. $item->id}}</h2>
 <div class='bg-gray-200 p-2 rounded-md''>
     <div class='flex w-full h-[30vh] my-5 rounded-md  justify-between'>
-        <img class='w-[60%] rounded-md shadow-md shadow-black' src="{{asset('/images/'.$content.'/'.$item->thumbnail) }} " alt="">
-        <div id='container_imgs '  class='w-[35%] overflow-x-hidden'>    
-            @foreach($item->pieceJointes as $pj)
-            <img class='m-2 rounded-md shadow-md shadow-black'  src="{{ asset('/images/'.$content.'/'.$pj->URL)  }}" alt="">
-            @endforeach
+        <div id='container_imgs '  class='w-[35%] overflow-x-hidden'>  
+            @if(count($item->pieceJointes)>0)  
+                @foreach($item->pieceJointes as $pj)
+                    <img class='m-2 rounded-md shadow-md shadow-black'  src="{{ asset('/images/'.$content.'/'.$pj->URL)  }}" alt="">
+                @endforeach
+            @else
+            <p>no images found</p>
+            @endif
         </div>
     </div>
         <div class="flex w-full justify-between">
@@ -21,8 +24,15 @@
                     </div>
                     <div class="mb-4">
                         <span class='font-bold'>Description</span>
-                        <p for="titre">{{$item->details}}</p>       
+                        <p for="titre">{!!$item->details!!}</p>       
                     </div> 
+                    <div>
+                    @if(count($item->tags)>0)  
+                        @foreach($item->tags as $tag)
+                            <span>{{$tag->name}}</span>
+                        @endforeach
+                    @endif
+                    </div>
 </div>
 <div>
                     {{$slot}}

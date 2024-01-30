@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('active')->nullable();
             $table->string('visibility')->nullable();
             $table->integer('max_stagiaires');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

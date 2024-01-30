@@ -9,6 +9,7 @@
     </div>
 </form>
 
+
 <div class="py-8 pr-4">
     <div class="flex items-center gap-6">
         <h2 class="text-5xl">{{$heading}}</h2>
@@ -25,12 +26,14 @@
             @endif
         </div>
         <div class="w-[1px] self-stretch bg-black"></div>
+        @can('gerer suppression')
         <div class="flex items-center gap-1">
             <a href="{{route("$toRoute".".trash")}}" class="text-red-700 opacity-70">Trash</a>
             @if (count($allTrashed) > 0)
             <span class="w-[16px] h-[16px] text-xs bg-gray-300 rounded-full flex items-center justify-center font-medium opacity-50">{{count($allTrashed)}}</span>
             @endif
         </div>
+        @endcan
     </div>
     <div>
         <form action="" class="flex w-4/12">
@@ -45,5 +48,7 @@
         {{$thead}}
         {{$tbody}}
     </table>
+    @role('super admin')
     {{$publiee->links('pagination::tailwind')}}
+    @endrole
 </div>

@@ -6,13 +6,16 @@
 
     
         <div class="mb-4">
-            <label for="auteur">Auteur</label>
-            <select name="auteur" id="auteur" class="block bg-gray-200 py-2 px-1 w-full rounded mt-4" value="{{$article->auteur}}">
-                <option value="Amin D">Amin D.</option>    
+            <label for="user">Auteur</label>
+            <select name="user" id="user" class="block bg-gray-200 py-2 px-1 w-full rounded mt-4">
+                <option value=''>Auteur</option> 
+                @foreach($admins as $admin)
+                    <option value="{{$admin->id}}" {{$admin->id===Session::get('user')->id?'selected':''}}>{{$admin->name}}</option> 
+                @endforeach
             </select>
-            @error('auteur')
+            @error('user')
                     <div class="text-red-600">{{$message}}</div>
-                    @enderror
+            @enderror
         </div>
 
         <div class="mb-4">

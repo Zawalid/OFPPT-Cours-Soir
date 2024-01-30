@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('details');
             $table->string('etat')->nullable();
             $table->string('visibility')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

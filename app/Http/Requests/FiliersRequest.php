@@ -25,7 +25,6 @@ class FiliersRequest extends FormRequest
             "titre" => "required",
             "description"=> "required",
             "max_stagiaires" => "required",
-            "annee_formation" => "required",
         ];
     }
 }
