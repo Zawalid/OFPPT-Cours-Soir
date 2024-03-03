@@ -25,7 +25,7 @@
         <tr>
             <td class="py-2">{{$filier->id}}</td>
             <td class="py-2">{{$filier->titre}}</td>
-            <td class="py-2">{{$filier->number_stagiaires}}</td>
+            <td class="py-2">{{$filier->max_stagiaires}}</td>
             @if($filier->active === 1)
                 <td class="py-2"> <span class='p-1 bg-green-700 text-white rounded-md'>active </span></td>
                 @else

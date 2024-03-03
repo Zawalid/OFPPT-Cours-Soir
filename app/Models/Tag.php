@@ -18,4 +18,7 @@ class Tag extends Model
     public function evenements() {
 	      return $this->morphedByMany(Evenement::class, 'taggable');
  	}
+	 static function tags(){
+        return 	Tag::select('id','name')->get() ;
+    }
 }

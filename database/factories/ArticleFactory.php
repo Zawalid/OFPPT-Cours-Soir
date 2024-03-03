@@ -23,9 +23,8 @@ class ArticleFactory extends Factory
         return [
            'titre' => $this->faker->title(),
            'details'=> $this->faker->paragraph(),
-           'date'=> $this->faker->date(),
-           'auteur'=> $this->faker->name(),
-           'thumbnail'=> $this->faker->sentence(15),
+           'date'=>now(),
+           'user_id'=> 2,
            'categorie_id'=> 1,
            'annee_formation_id'=> 1,
         ];

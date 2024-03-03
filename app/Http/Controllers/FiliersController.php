@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Filier;
 use App\Models\AnneeFormation;
+use App\Models\Secteur;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Requests\FiliersRequest;
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Session;
 
 
 class FiliersController extends Controller{
+    public function __construct(){
+        $this->middleware('auth');
+    }
 public function index()
     {
         $allPubliee = Filier::all();
@@ -25,11 +29,12 @@ public function index()
 
 public function create(){
      $activeAnneeFormations = AnneeFormation::active()->get()[0];
+     $secteurs =Secteur::all();
         if  (session::missing('anneeFormationActive')) {
         session(['anneeFormationActive' => $activeAnneeFormations]);
         }
         $AnneeFormation = AnneeFormation::all();
-        return view("filiers.ajouter_filier",compact(['AnneeFormation']));
+        return view("filiers.ajouter_filier",compact(['AnneeFormation','secteurs']));
     }
 
 public function store(FiliersRequest $request){
@@ -41,6 +46,7 @@ public function store(FiliersRequest $request){
         $filier->active = $request->Active;
         $filier->visibility =true;
         $filier->user_id = auth()->user()->id;
+        $filier->secteur_id = $request->secteur;
         $filier->annee_formation_id = Session::get('anneeFormationActive')->id;
         $filier->save();     
 //STORE filier files
@@ -71,7 +77,8 @@ public function show(string $id)
         $filier =   Filier::findOrFail($id);
         $pieceJointes=$filier->pieceJointes;
         $anneeFormation=$filier->AnneeFormations;
-        return view('filiers.show_filier', compact( ['filier','anneeFormation','pieceJointes']));
+        $secteur=$filier->Secteur      ;
+          return view('filiers.show_filier', compact( ['filier','anneeFormation','pieceJointes','secteur']));
 
     }
 
@@ -94,6 +101,7 @@ public function cacher(Request $request ,string $id){
     }
 
 public function update(FiliersRequest $request, string $id) {
+//update fillier
         $filier = Filier::findOrfail($id);
         $filier->titre = $request->titre;
         $filier->details = $request->description;

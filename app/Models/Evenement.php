@@ -23,4 +23,7 @@ class Evenement extends Model
     public function Admin(){
     return $this->belongsTo(User::class,'user_id');
   }
+  static function VisibleEvents(){
+        return Evenement::where('visibility',1)->get();
+    }
 }

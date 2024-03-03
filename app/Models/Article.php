@@ -27,5 +27,15 @@ class Article extends Model
   public function Admin(){
     return $this->belongsTo(User::class,'user_id');
   }
-
+  static function visibleArticles(){
+      $visibleArticles =Article::where('visibility',1)->get();
+          return  $visibleArticles;
+    }
+  static function orderedArticles(){
+      $orderedArticles= Article::orderBy('created_at','DESC')->get();
+        return  $orderedArticles;
+    }
+  static function latestArticle(){
+    return Article::latest()->get()->first();
+    }
 }

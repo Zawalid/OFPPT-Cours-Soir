@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categorie extends Model
 {
+  use HasFactory;
     protected $fillable=['nom'];
-    use HasFactory;
      public function articles(){
     return $this->hasMany(Article::class,'categorie_id');
   }
+   static function categories(){
+        return 	Categorie::select('id','name')->get() ;
+    }
 }

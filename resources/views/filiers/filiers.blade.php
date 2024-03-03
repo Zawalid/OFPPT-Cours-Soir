@@ -9,10 +9,10 @@
     <thead class="text-center border-b-2 border-solid border-gray-300">
         <tr>
             <th class="py-2">#</th>
-            <th class="py-2">Title</th>
+            <th class="py-2">Nom</th>
             <th class="py-2">max Stg</th>
             <th class="py-2">Inscreption</th>
-            <th class="py-2">Date P</th>
+            <th class="py-2">Secteur</th>
             <th class="py-2">Annee F</th>
             <th class="py-2">Piece J</th>
             <th class="py-2">Visibility</th>
@@ -35,7 +35,7 @@
         @else
         <td class="py-2"><span class='p-1 bg-red-500 text-white rounded-md'>  not active</span></td>
         @endif
-        <td class="py-2">{{$filier->created_at}}</td>
+        <td class="py-2">{{$filier->Secteur->name}}</td>
         <td class="py-2">{{$filier->AnneeFormations->nom}}</td>
         <td class="py-2">{{count($filier->pieceJointes)}}</td>
           <td class="py-2 ">
@@ -45,12 +45,12 @@
                 @if($filier->visibility==='1')
                     <button class=" bg-green-700 rounded-lg px-1 text-white font-bold ">
                             <i class="fa-solid text-xl fa-check "></i>  
-                            <span>cacher </span>
+                            <span>public </span>
                     </button>
                 @else
                     <button class="bg-red-600 rounded-lg p-1 text-white font-bold ">
                             <i class="fa-solid fa-x "></i>  
-                            <span>afficher </span>
+                            <span>prive </span>
                     </button>
                 @endif
             </form>

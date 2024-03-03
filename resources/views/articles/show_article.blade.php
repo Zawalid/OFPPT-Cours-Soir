@@ -10,7 +10,7 @@
         </div> 
         <div class="mb-4">
             <span class='font-bold'>categorie</span>
-            <p for="titre">{{$article->Categories->nom}}</p>       
+            <p for="titre">{{$article->Categories->name}}</p>       
         </div> 
     </div>
 </x-show>

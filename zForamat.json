@@ -1,0 +1,31 @@
+[
+    
+    {
+        "name":"filier",
+        "id":1,"title":"ssssiiiiiiiiiiiiiii",
+        "AnneeFormation":"2023/2024","content":"ssssssssss",
+        "author":"hassan","secteur":"Agriculture","tags":["sssssssssssssss"],
+        "cover":[],"max_stagiaires":23
+    },
+    {
+        "name":"event",
+        "id":1,"title":"test","AnneeFormation":"2023/2024","content":"test",
+        "author":"hassan","date":"2024-03-20","lieu":"RABAT","upcoming":null,
+        "duree":13,"tags":["tag","tag","tag","tag"],
+        "cover":["annie-spratt-AkftcHujUmk-unsplash.jpg"]
+    },
+    {
+        "name":"article",
+        "id":1,"title":"Mrs.","content":"Inventore saepe rex.","author":"hassan",
+        "AnneeFormation":"2010/2011","date":"2024-02-29","tags":[],
+        "cover":["369660955_608057794844406_3690607636692788380_n.jpg"]
+    },
+    {
+    "namee":"Demande",
+    "name":"hassan",
+    "email":"email",
+    "details":"details",
+    "phoneNumber":"0998877",
+    "subject":"test"
+}
+]

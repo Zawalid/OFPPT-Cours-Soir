@@ -57,10 +57,10 @@ public function store(ArticleRequest $request){
             $article->pieceJointes()->create([
                 'nom'=>$request->titre,
                 'taille'=> 11,
-                'emplacement'=>public_path('images/article'),
+                'emplacement'=>'file:///C:/laravel/OFPPT/public/images/articles',
                 'URL'=>$imageURL,
             ]);
-            $image->move(public_path('images/article'),$imageURL);
+            $image->move(public_path("images/article"),$imageURL);
         }   
         };
         if ($request->has('tags') ) {
@@ -134,10 +134,10 @@ public function update(ArticleRequest $request, string $id){
             $article->pieceJointes()->create([
                 'nom'=>$request->titre,
                 'taille'=> 11,
-                'emplacement'=>public_path('images/article'),
+                'emplacement'=>'file:///C:/laravel/OFPPT/public/images/articles',
                 'URL'=>$imageURL,
             ]);
-            $image->move(public_path('images/article'),$imageURL);
+            $image->move('file:///C:/laravel/OFPPT/public/images/articles',$imageURL);
         }   
         }
 
@@ -173,4 +173,5 @@ public function restore(string $id){
         $article->restore();
         return redirect()->route('articles.index');
     }
+
 }

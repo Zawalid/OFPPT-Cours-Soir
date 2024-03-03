@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('max_stagiaires');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('annee_formation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('secteur_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

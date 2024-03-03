@@ -2,7 +2,7 @@
 
 @section('content')
     
-<x-main2 heading="Permissions" content="Permission" toRoute="permissions" > 
+<x-mainRoles heading="Permissions" content="Permission" toRoute="permissions" > 
 
     <x-slot name='thead'>
         <thead class="text-center border-b-2 border-solid border-gray-300">
@@ -44,5 +44,5 @@
             @endisset
         </tbody>
     </x-slot>
-</x-main2>
+</x-mainRoles>
 @endsection

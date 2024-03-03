@@ -25,6 +25,9 @@
                 <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-1">
                     <a href="{{ route('filiers.index') }}">Filiers</a>
                 </li>
+                <li class="py-2 px-3 font-bold text-lg bg-gray-300 rounded mb-1">
+                    <a href="{{ route('demandes.index') }}">Demandes</a>
+                </li>
            
           
                 @role(['super-admin','admin'])

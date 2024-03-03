@@ -6,6 +6,7 @@ use App\Http\Controllers\EvenementsController;
 use App\Http\Controllers\FiliersController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DemandesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\PermissionController;
@@ -23,6 +24,11 @@ Route::POST('admin/articles/cacher/{id}', [ArticlesController::class,'cacher'])-
 Route::get('admin/articles/restore/{id}', [ArticlesController::class,'restore'])->name('articles.restore');
 Route::delete('admin/articles/force_delete/{id}', [ArticlesController::class,'forceDelete'])->name('articles.force_delete');
 Route::resource('admin/articles', ArticlesController::class)->middleware('auth');
+
+
+Route::get('admin/demandes/trash', [DemandesController::class,'trash'])->name('demandes.trash');
+Route::get('admin/demandes/restore/{id}', [DemandesController::class,'restore'])->name('demandes.restore');
+Route::resource('admin/demandes', DemandesController::class)->middleware('auth');
 
 //evenements routes
 Route::get('admin/evenements/trash', [EvenementsController::class,'trash'])->name('evenements.trash');

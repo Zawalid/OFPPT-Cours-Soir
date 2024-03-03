@@ -3,7 +3,7 @@
 @section('content')
     
 
-<x-main heading="Users" content="User" toRoute="users" :publiee="$publieeUsers" 
+<x-mainRoles heading="Users" content="User" toRoute="users" :publiee="$publieeUsers" 
     :trashed="$trashedUsers"  :allPubliee="$allPubliee" 
     :allTrashed='$allTrashed' :categorie="$categorie" :anneeFormation="$anneeFormation"
     >
@@ -53,6 +53,6 @@
             @endisset
         </tbody>
     </x-slot>
-</x-main>
+</x-mainRoles>
 
 @endsection

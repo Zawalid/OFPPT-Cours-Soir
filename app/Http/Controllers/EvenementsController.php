@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Session;
 
 
 class EvenementsController extends Controller{
+  public function __construct(){
+        $this->middleware('auth');
+    }  
 public function index(){
         $allPubliee = Evenement::all();
         $anneeFormation = AnneeFormation::all();

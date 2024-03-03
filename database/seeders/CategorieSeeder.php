@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Categorie;
 
 class CategorieSeeder extends Seeder
 {
@@ -15,11 +15,9 @@ class CategorieSeeder extends Seeder
     {
         $categories =['education','joural','examen','inscription','nouveautés'];
         foreach ($categories as $categ) {
-            $data2 =['nom'=>$categ,     
-            'created_at' => now(),
-            'updated_at' => now(),];
-            DB::table('categories')->insert($data2);
-
+            $categorie = new Categorie();
+            $categorie->name=$categ;
+            $categorie->save();
             }
     }
 }

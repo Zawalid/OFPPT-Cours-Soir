@@ -26,8 +26,8 @@
            @enderror
             </div>
             <div >
-                 <label for="tags">Tgas #</label>
-                 <input type="text" name="tags" id="tags" class='block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none'>
+                 <label for="tags">Tags #</label>
+                 <input type="text" value="{{old('tags')}}" name="tags" id="tags" class='block border-[1px] border-solid border-gray-500 rounded w-full mt-4 py-1 px-2 outline-none'>
             </div>
             <label for="file">piece joint</label>  
             <div class='flex flex-wrap gap-1 ' id='container_imgs' >  

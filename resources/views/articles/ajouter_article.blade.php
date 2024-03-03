@@ -9,7 +9,7 @@
                 <select name="categorie" value="{{old('categorie')}}"  id="categorie" class="block bg-gray-200 py-2 px-1 w-full cursor-pointer rounded mt-4">
                     <option value='' >categorie</option>    
                     @foreach($Categorie as $categ)    
-                        <option value= "{{$categ->id}}">{{$categ->nom}}</option>
+                        <option value= "{{$categ->id}}">{{$categ->name}}</option>
                     @endforeach    
                 </select>
                 @error('categorie')

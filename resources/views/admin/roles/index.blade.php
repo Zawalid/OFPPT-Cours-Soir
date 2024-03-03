@@ -2,7 +2,7 @@
 
 @section('content')
     
-<x-main2 heading="Roles" content="Role"  toRoute='roles'> 
+<x-mainRoles heading="Roles" content="Role"  toRoute='roles'> 
 
     <x-slot name='thead'>
         <thead class="text-center border-b-2 border-solid border-gray-300">
@@ -46,5 +46,5 @@
             @endisset
         </tbody>
     </x-slot>
-</x-main2>
+</x-mainRoles>
 @endsection

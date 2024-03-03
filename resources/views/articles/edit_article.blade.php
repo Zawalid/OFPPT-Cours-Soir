@@ -23,7 +23,7 @@
             <select name="categorie" id="categorie" class="block bg-gray-200 py-2 px-1 w-full rounded mt-4" value="{{$article->categorie}}">
                 <option value=''>categorie</option>    
                     @foreach($Categorie as $categ)    
-                        <option value= "{{$categ->id}}"  {{$article->categorie_id===$categ->id?'selected':''}}>{{$categ->nom}}</option>
+                        <option value= "{{$categ->id}}"  {{$article->categorie_id===$categ->id?'selected':''}}>{{$categ->name}}</option>
                     @endforeach    
             </select>
             @error('categorie')

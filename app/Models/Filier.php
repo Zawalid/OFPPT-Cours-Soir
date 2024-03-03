@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use DB;
 class Filier extends Model
 {
     use SoftDeletes;
@@ -23,4 +23,19 @@ class Filier extends Model
       public function Admin(){
     return $this->belongsTo(User::class,'user_id');
   }
+      public function Secteur(){
+    return $this->belongsTo(Secteur::class,'secteur_id');
+  }
+  static function ActiveFiliers(){
+        return Filier::where('active',1)->get();
+    }
+  static function GroupedFiliers(){
+      $query = DB::table('filiers');
+        return $query->select('secteur_id', DB::raw('count(*) as filiers'))
+                   ->groupBy('secteur_id')
+                   ->get();
+    }
+    static function filiersBySecteurs($id){
+        return Filier::where('secteur_id',$id)->get();
+    }
 }

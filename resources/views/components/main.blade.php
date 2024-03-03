@@ -48,7 +48,5 @@
         {{$thead}}
         {{$tbody}}
     </table>
-    @role('super admin')
     {{$publiee->links('pagination::tailwind')}}
-    @endrole
 </div>
