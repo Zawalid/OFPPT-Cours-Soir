@@ -1,8 +1,8 @@
 <div align="center">
   <br />
-  <h1 align="center">🎓 OFPPT - Cours du Soir</h1>
+  <h1 align="center">🎓EduHub</h1>
   <p align="center">
-    A content management system built with Laravel to manage articles, events, and course information for the OFPPT evening classes program.
+A full-stack content management system built with Laravel and a modern Inertia.js/React frontend, designed for educational institutions to manage courses, events, and news articles.
   </p>
   <br />
 </div>
