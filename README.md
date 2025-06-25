@@ -1,66 +1,82 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <br />
+  <h1 align="center">🎓 OFPPT - Cours du Soir</h1>
+  <p align="center">
+    A content management system built with Laravel to manage articles, events, and course information for the OFPPT evening classes program.
+  </p>
+  <br />
+</div>
+
+<div align="center">
+  <!-- Status Badge -->
+  <img alt="Status" src="https://img.shields.io/badge/Status-Completed-blue"/>
+  <!-- Tech Badges -->
+  <img alt="Laravel" src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"/>
+  <img alt="PHP" src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"/>
+  <img alt="MySQL" src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+</div>
+
+---
+
+### **📌 Table of Contents**
+* [✨ Core Features](#-core-features)
+* [🧰 Technology Stack](#-technology-stack)
+* [📸 Screenshots](#-screenshots)
+* [📨 Get In Touch](#-get-in-touch)
+
+---
+
+### **✨ Core Features**
+
+| Feature                   | Description                                                                                                                                                                 |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🗂️ **Content Management**     | Full CRUD (Create, Read, Update, Delete) functionality for core entities: **Articles** (news), **Events**, and **Filières** (academic programs).                         |
+| ⚙️ **Admin Dashboard**        | A secure, centralized dashboard for administrators to manage all website content efficiently, including a "trash" feature for soft-deleted items.                          |
+| 📄 **File Attachments**       | The ability to upload and attach relevant documents or files (`PieceJointe`) to different content types, such as articles or course descriptions.                          |
+| 🏛️ **MVC Architecture**      | Built following the robust Model-View-Controller (MVC) pattern, ensuring a clean separation of concerns between business logic, data, and presentation.                   |
+| ✅ **Server-Side Validation** | Utilizes Laravel's powerful **Form Request** validation to ensure all incoming data is sanitized and meets the required rules before being processed by the application.    |
+| 🎨 **Consistent UI**          | A consistent and maintainable user interface built with **Blade components** and a master layout system, styled with **Tailwind CSS**.                                     |
+
+---
+
+### **🧰 Technology Stack**
+
+This project is a classic monolithic web application built with a focus on stability and proven technologies.
+
+| Category                | Technologies & Services                                                                                                                                                                                                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Backend Framework**   | <img src="https://skillicons.dev/icons?i=laravel" alt="Laravel" width="24" style="vertical-align: middle; margin-right: 5px;"> **Laravel** for the core application logic, routing, and ORM.                                                                                                                         |
+| **Language & Database** | <img src="https://skillicons.dev/icons?i=php" alt="PHP" width="24" style="vertical-align: middle; margin-right: 5px;"> **PHP** as the server-side language, with <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" width="24" style="vertical-align: middle; margin-right: 5px;"> **MySQL** for data persistence. |
+| **Frontend**            | <img src="https://laravel.com/img/logomark.min.svg" alt="Blade" width="24" style="vertical-align: middle; margin-right: 5px;"> **Blade Templating Engine** for rendering dynamic views, styled with <img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" width="24" style="vertical-align: middle; margin-right: 5px;"> **Tailwind CSS**. |
+| **Build & Tooling**       | <img src="https://skillicons.dev/icons?i=vite" alt="Vite" width="24" style="vertical-align: middle; margin-right: 5px;"> **Vite** for fast and modern frontend asset bundling, with **Composer** managing PHP dependencies.                                                                                          |
+
+---
+
+### **📸 Screenshots**
+
+*(Note: Replace these placeholder links with actual paths to your screenshots in the repository.)*
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="./path/to/admin_dashboard.png" alt="Admin Dashboard" width="85%">
+  <br>
+  <em>The main administrative dashboard for managing site content.</em>
+</p>
+<br>
+<p align="center">
+  <img src="./path/to/add_article_form.png" alt="Add Article Form" width="85%">
+  <br>
+  <em>The form interface for creating or editing a new article.</em>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### **📨 Get In Touch**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Let's connect! I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Walid Zakan**
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   **📧 Email**: [walid.zakan@gmail.com](mailto:walid.zakan@gmail.com)
+-   **💼 LinkedIn**: [linkedin.com/in/walid-zakan](https://www.linkedin.com/in/walid-zakan)
